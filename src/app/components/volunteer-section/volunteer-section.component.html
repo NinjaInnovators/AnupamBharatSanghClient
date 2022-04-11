@@ -1,0 +1,40 @@
+<section class="volunter-section">
+    <div class="auto-container">
+        <!-- Sec Title -->
+        <div class="sec-title centered">
+            <h2 [innerHTML]="volunteerData.HeadingTitle"></h2>
+            <div class="text">{{volunteerData.Description}}</div>
+        </div>
+ <div class="row clearfix">            
+            <!-- Volunter Block -->
+ <div class="volunter-block col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let item of volunteerList">         
+    <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms"  >
+        <div class="image" >
+            <img src="{{apiEndPoint+item.VolunteerImage}}" alt="" />
+            <div class="overlay-box">
+                <div class="overlay-inner">
+                    <div class="text">{{item.VolunteerWish}}</div>
+                    <a href="#" class="link-btn"><span class="icon flaticon-web-link"></span></a>
+                    <!--Social Box-->
+                    <ul class="social-box">
+                        <li><a  href="item.VolunteerFacebookLink"><span class="fab fa-facebook-f"></span></a></li>
+                        <li><a  href="item.VolunteerGoogleLink"><span class="fab fa-google-plus-g"></span></a></li>
+                        <li><a  href="item.VolunteerSkypeLink"><span class="fab fa-skype"></span></a></li>
+                        <li><a  href="item.VolunteerTwitterLink"><span class="fab fa-twitter"></span></a></li>
+                        <li><a  href="item.VolunteerLinkedinLink"><span class="fab fa-linkedin-in"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="lower-box">
+            <h3><a href="#">{{item.VolunteerName}}</a></h3>
+            <div class="designation">{{item.VolunteerDesignation}}</div>
+        </div>
+    </div>    
+
+        </div>
+       
+        </div>
+        <button class="btn btn-danger pull-right" [routerLink]="['/get-involved']">View More</button>
+    </div>
+</section>

@@ -1,0 +1,143 @@
+<div class="card" *ngIf="!isView">
+    <div class="card-body col-md-6">
+        <form class="form" [formGroup]="homeEventSectionForm" (ngSubmit)="addHomeEventSection()" autocomplete="off" novalidate>
+            <div class="form-group text-left">
+                <label for="Title">Event Title</label>
+                <input type="text" formControlName="EventTitle" class="form-control"/>
+                <div class="alert alert-danger" *ngIf="f.EventTitle.invalid && (f.EventTitle.dirty || f.EventTitle.touched)">
+                    <div role="alert" *ngIf="f.EventTitle.errors?.required">
+                        EventTitle is required!
+                    </div>
+                </div>
+            </div>  
+         
+            <div class="form-group text-left">
+                <label for="slogan">Description</label>
+                <textarea formControlName="EventDescription" rows="5" cols="33" class="form-control" ></textarea>
+                <div class="alert alert-danger" *ngIf="f.EventDescription.invalid && (f.EventDescription.dirty || f.EventDescription.touched)">
+                    <div role="alert" *ngIf="f.EventDescription.errors?.required">
+                        Event Description is required!
+                    </div>
+                </div>
+            </div>   
+            <div class="form-group text-left">
+                <label for="slogan">Event Icon</label>
+                <input formControlName="EventIconImage" rows="5" cols="33" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.EventIconImage.invalid && (f.EventIconImage.dirty || f.EventDescription.touched)">
+                    <div role="alert" *ngIf="f.EventIconImage.errors?.required">
+                        EventIcon is required!
+                    </div>
+                </div>
+            </div>         
+            <div class="form-group text-left">
+                <label for="slogan">Event Link Url</label>
+                <input formControlName="EventLinkUrl" rows="5" cols="33" class="form-control" />
+                <!-- <div class="alert alert-danger" *ngIf="f.EventIconImage.invalid && (f.EventIconImage.dirty || f.EventDescription.touched)">
+                    <div role="alert" *ngIf="f.EventIconImage.errors?.required">
+                        EventIcon is required!
+                    </div>
+                </div> -->
+            </div>    
+            <div class="form-group" style="float: right;">                
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm">
+                        <strong>{{isEdit?'Update':'Save'}}</strong>
+                    </span>                    
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card" *ngIf="isView">
+    <div class="card-body">
+        <div class="d-md-flex align-items-center">
+
+            <div class="ml-auto mb-2">
+                <button type="button" class="btn btn-primary" style="border-radius: 30px;" (click)="add()">
+                    <i class="fa fa-plus"></i>
+                    Add</button>
+            </div>
+        </div>
+        <div class="row" >
+            <form [formGroup]="searchHomeEventSectionForm" (ngSubmit)="searchHomeEventSection()" novalidate  style="width:100%">
+                <div class="row">                   
+                       <div class="col-md-4 from-group py-2">
+					    <input type="text" formControlName="Title" class="form-control" placeholder="Title"/>
+					   </div> 
+                        <div class="col-md-4 form-group py-2">
+                            <select class="form-control ddl" formControlName="IsActive">
+                                <option value="">--Status--</option>
+                                <option value="1">Active</option>
+                                <option value="0">InActive</option>
+                            </select>
+                        </div>                  
+                 
+                        <div class="col-md-4 form-group py-2">
+						<button type="submit" class="btn btn-danger btn-rounded">
+                            <i class="fa fa-search"></i>&nbsp;Search</button>
+						</div>                 
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+  
+    <div class="table-responsive">
+        <hr/>
+        <div class="text-right mr-5">
+            <strong>Total HomeEventSection:</strong>
+            {{totalHomeEventSection}}
+        </div>
+        <hr/>      
+        <table class="table v-middle mb-0 no-wrap">
+            <thead>
+                <tr>
+                    <th class="border-top-0 font-medium border-bottom-0">SNo.</th>
+                    <th class="border-top-0 font-medium border-bottom-0">Event Title</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Description</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">EventIcon</th>    
+                    <th class="border-top-0 font-medium border-bottom-0">EventLinkUrl</th>               
+                    <th class="border-top-0 font-medium border-bottom-0">Status</th>
+                    <th class="border-top-0 font-medium border-bottom-0" colspan="2">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let cat of homeEventSectionList;index as i'>
+                    <td>{{i+1}}</td>
+                    <td>
+                        {{cat.EventTitle}}
+                    </td>    
+                    <td>
+                        {{cat.EventDescription}}
+                    </td>  
+                    
+                    <td>
+                        {{cat.EventIconImage}}
+                    </td>        
+                    <td>
+                        {{cat.EventLinkUrl}}
+                    </td>       
+                      <td>
+                       
+                        <label class="toggle-switch">
+                            <input type="checkbox" [(ngModel)]="cat.IsActive" (click)="changeStatus(cat)"/>
+                            <div class="slider"></div>
+                        </label>
+                    </td>
+                    <td>
+                        <i class="fa fa-edit" (click)="editHomeEventSection(cat)"></i>
+                    </td>
+                    <td>
+                        <i class="fa fa-trash text-danger" (click)="deleteHomeEventSection(cat)"></i>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

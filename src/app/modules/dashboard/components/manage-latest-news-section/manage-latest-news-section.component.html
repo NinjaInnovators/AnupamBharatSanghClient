@@ -1,0 +1,51 @@
+<div class="card">
+    <div class="card-body col-md-6">
+        <form class="form" [formGroup]="latestNewsSectionForm" (ngSubmit)="addLatestNewsSection()" autocomplete="off" novalidate>
+            <div class="form-group text-left">
+                <label for="Title">Left Title</label>
+                <input type="text" formControlName="LeftTitle" class="form-control"/>
+                <div class="alert alert-danger" *ngIf="f.LeftTitle.invalid && (f.LeftTitle.dirty || f.LeftTitle.touched)">
+                    <div role="alert" *ngIf="f.LeftTitle.errors?.required">
+                        LeftTitle is required!
+                    </div>
+                </div>
+            </div>  
+         
+            <div class="form-group text-left">
+                <label for="slogan">Right Title</label>
+                <input formControlName="RightTitle" rows="5" cols="33" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.RightTitle.invalid && (f.RightTitle.dirty || f.RightTitle.touched)">
+                    <div role="alert" *ngIf="f.RightTitle.errors?.required">
+                        RightTitle is required!
+                    </div>
+                </div>
+            </div>          
+            <div class="form-group text-left">
+                <label for="SectionImage">SectionImage</label>
+                <img src="{{apiEndPoint+latestNewsSectionForm.value.SectionImage}}" width="120" height="170" />
+                <input type='file' (change)="onSelectFile($event)" />
+                <div class="alert alert-danger" *ngIf="f.SectionImage.invalid && (f.SectionImage.dirty || f.SectionImage.touched)">
+                    <div role="alert" *ngIf="f.SectionImage.errors?.required">
+                        SectionImage is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="slogan">Description</label>
+                <textarea formControlName="Description" rows="5" cols="33" class="form-control" ></textarea>
+                <div class="alert alert-danger" *ngIf="f.Description.invalid && (f.Description.dirty || f.Description.touched)">
+                    <div role="alert" *ngIf="f.Description.errors?.required">
+                        Description is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group" style="float: right;">                
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm">
+                        <strong>Save</strong>
+                    </span>                    
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

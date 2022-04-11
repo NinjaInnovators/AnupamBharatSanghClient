@@ -1,0 +1,151 @@
+
+	<!--Page Title-->
+    <section class="page-title" style="background-image:url(assets/images/background/12.jpg);">
+    	<div class="auto-container">
+        	<div class="row clearfix">
+            	<!--Title -->
+            	<div class="title-column col-lg-6 col-md-12 col-sm-12">
+                	<h1>Events</h1>
+                </div>
+                <!--Bread Crumb -->
+                <div class="breadcrumb-column col-lg-6 col-md-12 col-sm-12">
+                    <ul class="bread-crumb clearfix">
+                        <li><a style="cursor:pointer" [routerLink]="['/home']"><span class="icon fas fa-home"></span> Home</a></li>
+                        <li class="active"><span class="icon fas fa-arrow-alt-circle-right"></span> Events</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Page Title-->
+	
+	<!--Sidebar Page Container-->
+    <div class="sidebar-page-container">
+    	<div class="auto-container">
+        	<div class="row clearfix">
+            	
+                <!--Content Side-->
+                <div class="content-side col-lg-8 col-md-12 col-sm-12">
+					
+					<!-- Event Block Three -->
+					<div class="event-block-three" *ngFor="let item of eventList">
+						<div class="inner-box">
+							<div class="row clearfix">								
+								<!-- Image Column -->
+								<div class="image-column col-lg-6 col-md-6 col-sm-12">
+									<div class="inner-column wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+										<div class="image">
+											<a href="#"><img src="{{apiEndPoint+item.EventSmallImage}}" alt="" /></a>
+										</div>
+									</div>
+								</div>								
+								<!-- Content Column -->
+								<div class="content-column col-lg-6 col-md-6 col-sm-12">
+									<div class="inner-column">
+										<!-- Upper Box -->
+										<div class="upper-box">
+											<div class="upper-inner">
+												<div class="date-outer">
+													<div class="date">{{item.EventDate|date:'dd'}}</div>
+													<div class="month">{{item.EventDate|date:'MMM'}}</div>
+												</div>
+												<div class="category"><span class="theme_color">Organized By :</span> {{item.OrganizedBy}}</div>
+											</div>
+										</div>
+										<h3><a href="#">{{item.EventTitle}}</a></h3>
+										<ul class="post-meta">
+											<li><a href="#"><span class="icon far fa-clock"></span>Starts {{item.EventTime}}</a></li>
+											<li><a href="#"><span class="icon fas fa-map-marker-alt"></span>{{item.EventLocation}}</a></li>
+										</ul>
+										<div class="btns-box">
+											<a href="#" class="theme-btn btn-style-three">Donate now</a>
+											<a href="#" class="theme-btn btn-style-two">join us</a>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>					
+					
+				</div>
+				
+				<!--Sidebar Side-->
+                <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                	<aside class="sidebar">
+						
+						<!-- Search -->
+                        <div class="sidebar-widget search-box">
+                        	<form method="post" action="#">
+                                <div class="form-group">
+                                    <input type="search" name="search-field" value="" placeholder="Search..." required>
+                                    <button type="submit"><span class="icon fa fa-search"></span></button>
+                                </div>
+                            </form>
+						</div>
+						
+						<!--Category Blog-->
+                        <div class="sidebar-widget categories-blog">
+                        	<div class="sidebar-title">
+                            	<h2>Categories</h2>
+                            </div>
+                            <ul>
+								<li><a href="#">Accommodation <span>05</span></a></li>
+								<li><a href="#">Children Protection <span>13</span></a></li>
+								<li><a href="#">Donation Events <span>07</span></a></li>
+								<li><a href="#">Eduction <span>25</span></a></li>
+								<li><a href="#">Food Supply <span>17</span></a></li>
+								<li><a href="#">Health Care <span>12</span></a></li>
+							</ul>
+                        </div>
+						
+						<!-- Popular Posts -->
+                        <div class="sidebar-widget popular-posts">
+							<div class="sidebar-title">
+                            	<h2>Latest posts</h2>
+                            </div>
+                            <div class="widget-content">
+                                <article class="post">
+                                    <figure class="post-thumb"><a href="#"><img src="assets/images/resource/post-thumb-1.jpg" alt=""></a></figure>
+                                    <div class="text"><a href="#">Helping Kids Grow up Stornger</a></div>
+                                    <div class="post-info">Dec 28, 2018</div>
+                                </article>
+                                
+                                <article class="post">
+                                    <figure class="post-thumb"><a href="#"><img src="assets/images/resource/post-thumb-2.jpg" alt=""></a></figure>
+                                    <div class="text"><a href="#">Kids Eduction in Rural Areas</a></div>
+                                    <div class="post-info">Dec 28, 2018</div>
+                                </article>
+                                
+                                <article class="post">
+                                    <figure class="post-thumb"><a href="#"><img src="assets/images/resource/post-thumb-3.jpg" alt=""></a></figure>
+                                    <div class="text"><a href="#">People Dying Due to hunger</a></div>
+                                    <div class="post-info">Dec 28, 2018</div>
+                                </article>
+                            </div>
+						</div>
+						
+						<!-- Help Widget -->
+                        <div class="sidebar-widget help-widget">
+							<div class="sidebar-title">
+                            	<h2>Need Help?</h2>
+                            </div>
+                            <div class="widget-content">
+								<div class="text">if you have any question please don’t hesitate to contact us</div>
+								<ul class="list">
+									<li><span class="icon fas fa-phone-volume"></span>123 456 7890</li>
+									<li><span class="icon fas fa-envelope"></span>info@khidmat.com use contact Form</li>
+								</ul>
+							</div>
+						</div>
+						
+					</aside>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	
+	<!--Newsleter Section-->
+	<news-letter></news-letter>
+    <!--End Newsleter Section-->

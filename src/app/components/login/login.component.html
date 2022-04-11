@@ -1,0 +1,76 @@
+<!-- Bread Crumb STRAT -->
+<div class="banner inner-banner1" style="background-image: url(assets/images/background/12.jpg);height:200px;">
+  <div class="container">
+    <section class="banner-detail center-xs">
+      <h1 class="banner-title"></h1>
+      <div class="bread-crumb right-side float-none-xs">
+        <ul class="form-inline" id="login">
+          <li><a routerLink="['/home']"><i class="fa fa-home"></i> Home</a>/</li>
+          <li><span>Login</span></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+<!-- Bread Crumb END -->
+
+<!-- CONTAIN START -->
+<section class="checkout-section ptb-80">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-2">
+        <h1>Login</h1>
+      </div>
+    </div>
+    
+    <div class="wrapper">
+      <div id="formContent">
+        <div class="fadeIn first mt-3">
+          <i class="fa fa-user-circle fa-5x"></i>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <form [formGroup]="loginForm" (ngSubmit)="login()" role="form" autocomplete="off" novalidate>
+                <div class="form-group">
+                  <input class="form-control text-left" formControlName="EmailId" type="email" required
+                    placeholder="Email Address">
+                  <div class="alert alert-danger" *ngIf="f.EmailId.invalid && (f.EmailId.dirty || f.EmailId.touched)">
+                    <div role="alert" *ngIf="f.EmailId.errors.required">
+                      Email-Id is required!
+                    </div>
+                    <div role="alert" *ngIf="f.EmailId.errors.email">
+                      Email-Id is invalid!
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" formControlName="Password" type="password" required
+                    placeholder="Enter your Password">
+                  <div class="alert alert-danger"
+                    *ngIf="f.Password.invalid && (f.Password.dirty || f.Password.touched)">
+                    <div role="alert" *ngIf="f.Password.errors.required">
+                      Password is required!
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="submit" class="btn btn-danger" value="Log In">
+                </div>
+              </form>
+
+              <!-- Remind Passowrd -->
+              <div id="formFooter">
+                New User?&nbsp;&nbsp;<a class="btn btn-primary" [routerLink]="['/register']">&nbsp; &nbsp;Register</a>
+                <a class="pull-right text-primary" [routerLink]="['/forget-password']">Forgot Password?</a><br />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- CONTAINER END -->

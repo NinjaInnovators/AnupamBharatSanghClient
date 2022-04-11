@@ -1,0 +1,64 @@
+
+h1 {
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+ul{
+	width:270px;
+	background-color:#c4bfbf;	
+}
+ul li:not(:first-child) {
+	border-top: 1px solid #fff;
+  }
+  
+  ul li:not(:last-child) {
+	border-bottom: 1px solid rgb(155, 151, 151);
+  }
+ul li{
+	padding:10px 15px 10px 15px;	
+}
+
+ul li:active{
+	padding:10px 15px 10px 15px;	
+}
+
+ul li:hover{
+	padding:10px 15px 10px 15px;
+	background-color:#646060;
+	color:#e4d9d9;
+}
+
+ul li a{
+	font-size:20px;
+	color:#4d4a4a;
+}
+
+ul li a:hover{
+	font-size:20px;
+	color:#e4dede;
+}
+
+
+@media (min-width: 768px) {
+
+    .brand-pills > li > a {
+        border-top-right-radius: 0px;
+    	border-bottom-right-radius: 0px;
+    }
+    
+    li.brand-nav.active a:after{
+    	content:"";
+    	display: block;
+    	width: 0;
+    	height: 0;
+    	border-top: 20px solid transparent;
+    	border-bottom: 20px solid transparent;
+    	border-left: 9px solid #428bca;
+    	position: absolute;
+    	top: 50%;
+    	margin-top: -20px;
+    	left: 100%;
+    	z-index: 2;
+    }
+}

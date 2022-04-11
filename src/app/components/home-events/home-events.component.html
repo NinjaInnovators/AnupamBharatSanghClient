@@ -1,0 +1,17 @@
+<section class="services-section" style="background-image:url(assets/images/background/2.jpg)">
+    <div class="auto-container">
+        <div class="row clearfix">            
+            <!-- Service Block -->
+            <div class="service-block col-lg-4 col-md-6 col-sm-12" *ngFor="let item of homeEventsList">
+                <div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                    <div class="icon-box">
+                        <span class="icon" [ngClass]="item.EventIconImage"></span>
+                    </div>
+                    <h3><a href="#">{{item.EventTitle}}</a></h3>
+                    <div class="text">{{item.EventDescription}}</div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</section>

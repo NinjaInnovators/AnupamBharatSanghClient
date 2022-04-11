@@ -1,0 +1,50 @@
+<!-- Bread Crumb STRAT -->
+<div class="banner inner-banner1" style="background-image: url(assets/images/background/12.jpg);height:200px;">
+  <div class="container">
+    <section class="banner-detail center-xs">
+      <h1 class="banner-title"></h1>
+      <div class="bread-crumb right-side float-none-xs">
+        <ul class="form-inline" id="login">
+          <li><a routerLink="['/home']"><i class="fa fa-home"></i> Home</a>/</li>
+          <li><span>Account</span></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+<!-- Bread Crumb END -->
+ 
+  <section class="checkout-section ptb-80">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="account-sidebar account-tab mb-sm-30">
+            <!-- <div class="dark-bg tab-title-bg">
+              <div class="heading-part">
+                <div class="sub-title"><span></span> Dashboard</div>
+              </div>
+            </div> -->
+            <div class="account-tab-inner">
+              <app-side-bar></app-side-bar>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <div class="account-content">
+            <div class="mb-30">
+              <div class="row">
+                <div class="col-12">
+                  <app-breadcrumb></app-breadcrumb>
+                  <div class="container-fluid">
+                    <router-outlet>
+                    </router-outlet>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

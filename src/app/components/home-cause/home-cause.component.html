@@ -1,0 +1,53 @@
+<section class="causes-section">
+    <div class="auto-container">
+        <!-- Sec Title -->
+        <div class="sec-title">
+            <div class="clearfix">
+                <div class="pull-left">
+                    <h2 [innerHTML]="homeCausesSectionData.SectionHeading"></h2>
+                    <div class="text">{{homeCausesSectionData.SectionSubHeading}}</div>
+                </div>
+                <div class="pull-right">
+                    <a [routerLink]="['/our-works']" style="cursor:pointer" class="theme-btn btn-style-four">View All Causes</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row clearfix links">            
+            <!-- <app-causes-list></app-causes-list>    -->
+           
+ <div class="causes-block col-lg-4 col-md-6 col-sm-12" *ngFor="let item of causesList.slice(0,3)">
+    <div class="inner-box wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
+        <div class="image">
+            <div class="ribbon" *ngIf="item.IsUrgent">URGENT</div>
+            <a href="#"><img src="{{apiEndPoint+item.CausesImage}}" alt="" /></a>
+            <a href="#" class="like-icon"><span class="icon flaticon-heart"></span></a>
+        </div>
+        <div class="lower-content">
+            <h3><a href="#">{{item.CausesTitle}}</a></h3>
+            <div class="content">
+                <div class="text">{{item.CausesDescription}}</div>
+                <div class="donate-percentage">
+                    <div class="donate-bar">
+                        <div class="bar-inner"><div class="bar progress-line" data-width="65"><div class="count-box"><span class="count-text" data-speed="2500" data-stop="65">0</span>%</div></div></div>
+                    </div>
+                    <div class="donate-bar-info">
+                        <div class="donate-percent"></div>
+                    </div>
+                    <div class="amounts clearfix">
+                        <div class="pull-left number">Raised: <i class="fas fa-rupee-sign"></i>&nbsp;{{item.FundRaised}}</div>
+                        <div class="pull-right number">Goal: <i class="fas fa-rupee-sign"></i>&nbsp;{{item.FundGoal}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="btns-box">
+                <a href="#" class="theme-btn btn-style-three">Donate now</a>
+                <a href="#" class="theme-btn btn-style-two">More Detail</a>
+            </div>
+        </div>
+    </div>
+</div> 
+        </div>
+        
+    </div>
+</section>

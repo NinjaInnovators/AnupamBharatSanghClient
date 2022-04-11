@@ -1,0 +1,11 @@
+.active{
+    border-top:2px solid #ff5722;   
+    
+}
+ul li a.active{
+    color:#ff5722;
+}
+
+.sticky-header .main-menu .navigation > li > a.active{
+    color:#ff5722;
+}

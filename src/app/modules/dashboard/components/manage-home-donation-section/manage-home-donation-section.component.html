@@ -1,0 +1,53 @@
+<div class="card">
+    <div class="card-body col-md-6">
+        <form class="form" [formGroup]="homeDonationSectionForm" (ngSubmit)="addHomeDonationSection()" autocomplete="off" novalidate>
+            <div class="form-group text-left">
+                <label for="Title">Title</label>
+                <input type="text" formControlName="Title" class="form-control"/>
+                <div class="alert alert-danger" *ngIf="f.Title.invalid && (f.Title.dirty || f.Title.touched)">
+                    <div role="alert" *ngIf="f.Title.errors?.required">
+                        Title is required!
+                    </div>
+                </div>
+            </div>  
+         
+            <div class="form-group text-left">
+                <label for="slogan">Description</label>
+                <textarea formControlName="Description" rows="5" cols="33" class="form-control" ></textarea>
+                <div class="alert alert-danger" *ngIf="f.Description.invalid && (f.Description.dirty || f.Description.touched)">
+                    <div role="alert" *ngIf="f.Description.errors?.required">
+                        Description is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="buttonText">ButtonText</label>
+                <input  formControlName="ButtonText" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.ButtonText.invalid && (f.ButtonText.dirty || f.ButtonText.touched)">
+                    <div role="alert" *ngIf="f.ButtonText.errors?.required">
+                        ButtonText is required!
+                    </div>
+                </div>
+            </div>       
+            <div class="form-group text-left">
+                <label for="buttonLink">Button Link</label>
+                <input  formControlName="ButtonLink" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.ButtonLink.invalid && (f.ButtonLink.dirty || f.ButtonLink.touched)">
+                    <div role="alert" *ngIf="f.ButtonLink.errors?.required">
+                        ButtonLink is required!
+                    </div>
+                </div>
+            </div>     
+          
+            <div class="form-group" style="float: right;">                
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm">
+                        <strong>Save</strong>
+                    </span>                    
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

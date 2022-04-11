@@ -1,0 +1,19 @@
+
+    <section class="main-slider">
+                <!--Main Slider-->      
+      <owl-carousel class="" [items]="bannerList" [options]="bannerOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+          <div class="slide" *ngFor="let item of bannerList;let i = index" [style.background-image]="'url('+apiEndPoint+item.BannerImage+')'" >
+              <div class="auto-container">
+                  <div class="content clearfix">
+                      <h2 [innerHTML]="item.Title"></h2>
+                      <div class="text" [innerHTML]="item.Description"></div>
+                      <div class="link-box">
+                          <a href="{{item.ButtonLink}}" class="theme-btn btn-style-two mb-3">{{item.ButtonText}}</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </owl-carousel>    
+          <!--Scroll Dwwn Btn-->
+          <!-- <div class="mouse-btn-down scroll-to-target" data-target=".welcome-section"></div> -->
+      </section>

@@ -1,0 +1,164 @@
+<div class="card" *ngIf="!isView">
+    <div class="card-body col-md-6">
+        <form class="form" [formGroup]="homeCausesForm" (ngSubmit)="addHomeCauses()" autocomplete="off" novalidate>
+            <div class="form-group text-left">
+                <label for="Title">Title</label>
+                <input type="text" formControlName="CausesTitle" class="form-control"/>
+                <div class="alert alert-danger" *ngIf="f.CausesTitle.invalid && (f.CausesTitle.dirty || f.CausesTitle.touched)">
+                    <div role="alert" *ngIf="f.CausesTitle.errors?.required">
+                        Title is required!
+                    </div>
+                </div>
+            </div>  
+            <div class="form-group text-left">
+                <label for="Causes Image">Causes Image</label>
+                <img src="{{homeCausesForm.value.CausesImage}}" width="120" height="170" />
+                <input type='file' (change)="onSelectFile($event)" />
+                <div class="alert alert-danger" *ngIf="f.CausesImage.invalid && (f.CausesImage.dirty || f.CausesImage.touched)">
+                    <div role="alert" *ngIf="f.CausesImage.errors?.required">
+                        CausesImage is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="slogan">Description</label>
+                <textarea formControlName="CausesDescription" rows="5" cols="33" class="form-control" ></textarea>
+                <div class="alert alert-danger" *ngIf="f.CausesDescription.invalid && (f.CausesDescription.dirty || f.CausesDescription.touched)">
+                    <div role="alert" *ngIf="f.CausesDescription.errors?.required">
+                        Description is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="fundRaised">FundRaised</label>
+                <input  formControlName="FundRaised" class="form-control" />
+                <!-- <div class="alert alert-danger" *ngIf="f.FundRaised.invalid && (f.FundRaised.dirty || f.FundRaised.touched)">
+                    <div role="alert" *ngIf="f.FundRaised.errors?.required">
+                        FundRaised is required!
+                    </div>
+                </div> -->
+            </div>       
+            <div class="form-group text-left">
+                <label for="fundgoal">Fund Goal</label>
+                <input  formControlName="FundGoal" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.FundGoal.invalid && (f.FundGoal.dirty || f.FundGoal.touched)">
+                    <div role="alert" *ngIf="f.FundGoal.errors?.required">
+                        FundGoal is required!
+                    </div>
+                </div>
+            </div>     
+            <div class="form-group text-left">
+                <label for="isUrgent">Urgent</label>
+                <input type="checkbox" formControlName="IsUrgent" class="form-control" />
+                <!-- <div class="alert alert-danger" *ngIf="f.FundGoal.invalid && (f.FundGoal.dirty || f.FundGoal.touched)">
+                    <div role="alert" *ngIf="f.FundGoal.errors?.required">
+                        FundGoal is required!
+                    </div>
+                </div> -->
+            </div> 
+            <div class="form-group" style="float: right;">
+                <button type="button" class="btn btn-danger mr-2" (click)="reset()">Cancel</button>
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm">
+                        <strong>{{isEdit===false?'Submit':'Update'}}</strong>
+                    </span>
+                    
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card" *ngIf="isView">
+    <div class="card-body">
+        <div class="d-md-flex align-items-center">
+
+            <div class="ml-auto mb-2">
+                <button type="button" class="btn btn-primary" style="border-radius: 30px;" (click)="add()">
+                    <i class="fa fa-plus"></i>
+                    Add</button>
+            </div>
+        </div>
+        <div class="row" >
+            <form [formGroup]="searchHomeCausesForm" (ngSubmit)="searchHomeCauses()" novalidate  style="width:100%">
+                <div class="row">                   
+                       <div class="col-md-4 from-group py-2">
+					    <input type="text" formControlName="Title" class="form-control" placeholder="Title"/>
+					   </div> 
+                        <div class="col-md-4 form-group py-2">
+                            <select class="form-control ddl" formControlName="IsActive">
+                                <option value="">--Status--</option>
+                                <option value="1">Active</option>
+                                <option value="0">InActive</option>
+                            </select>
+                        </div>                  
+                 
+                        <div class="col-md-4 form-group py-2">
+						<button type="submit" class="btn btn-danger btn-rounded">
+                            <i class="fa fa-search"></i>&nbsp;Search</button>
+						</div>                 
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+  
+    <div class="table-responsive">
+        <hr/>
+        <div class="text-right mr-5">
+            <strong>Total HomeCauses:</strong>
+            {{totalHomeCauses}}
+        </div>
+        <hr/>      
+        <table class="table v-middle mb-0 no-wrap">
+            <thead>
+                <tr>
+                    <th class="border-top-0 font-medium border-bottom-0">SNo.</th>
+                    <th class="border-top-0 font-medium border-bottom-0">CausesTitle</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Description</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Causes Image</th> 
+                    <th class="border-top-0 font-medium border-bottom-0">Fund Raised</th>    
+                    <th class="border-top-0 font-medium border-bottom-0">Fund Goal</th>               
+                    <th class="border-top-0 font-medium border-bottom-0">Status</th>
+                    <th class="border-top-0 font-medium border-bottom-0" colspan="2">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let cat of homeCausesList;index as i'>
+                    <td>{{i+1}}</td>
+                    <td>
+                        {{cat.CausesTitle}}
+                    </td>    
+                    <td>
+                        {{cat.CausesDescription}}
+                    </td>  
+                    <td><img src={{apiEndPoint+cat.CausesImage}} style="width: 180px; height: 80px;"/></td>   
+                    <td>
+                        {{cat.FundRaised}}
+                    </td>        
+                    <td>
+                        {{cat.FundGoal}}
+                    </td>       
+                      <td>
+                       
+                        <label class="toggle-switch">
+                            <input type="checkbox" [(ngModel)]="cat.IsActive" (click)="changeStatus(cat)"/>
+                            <div class="slider"></div>
+                        </label>
+                    </td>
+                    <td>
+                        <i class="fa fa-edit" (click)="editHomeCauses(cat)"></i>
+                    </td>
+                    <td>
+                        <i class="fa fa-trash text-danger" (click)="deleteHomeCauses(cat)"></i>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

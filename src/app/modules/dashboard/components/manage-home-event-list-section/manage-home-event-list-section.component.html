@@ -1,0 +1,46 @@
+
+<div class="card">
+    <div class="card-body col-md-6">
+        <form class="form" [formGroup]="homeEventListSectionForm" (ngSubmit)="addHomeEventListSection()" autocomplete="off" novalidate>
+            <div class="form-group text-left">
+                <label for="Title">Title</label>
+                <input type="text" formControlName="EventListTitle" class="form-control"/>
+                <div class="alert alert-danger" *ngIf="f.EventListTitle.invalid && (f.EventListTitle.dirty || f.EventListTitle.touched)">
+                    <div role="alert" *ngIf="f.EventListTitle.errors?.required">
+                        Title is required!
+                    </div>
+                </div>
+            </div>  
+           
+            <div class="form-group text-left">
+                <label for="EventListSectionImage">EventListSectionImage</label>
+                <img src="{{apiEndPoint+homeEventListSectionForm.value.EventListSectionImage}}" width="120" height="170" />
+                <input type='file' (change)="onSelectFile($event)" />
+                <div class="alert alert-danger" *ngIf="f.EventListSectionImage.invalid && (f.EventListSectionImage.dirty || f.EventListSectionImage.touched)">
+                    <div role="alert" *ngIf="f.EventListSectionImage.errors?.required">
+                        EventListSectionImage is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="slogan">Description</label>
+                <textarea formControlName="EventListDescription" rows="5" cols="33" class="form-control" ></textarea>
+                <div class="alert alert-danger" *ngIf="f.EventListDescription.invalid && (f.EventListDescription.dirty || f.EventListDescription.touched)">
+                    <div role="alert" *ngIf="f.EventListDescription.errors?.required">
+                        Description is required!
+                    </div>
+                </div>
+            </div> 
+            
+            <div class="form-group" style="float: right;">                
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm">
+                        <strong>Save</strong>
+                    </span>                    
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

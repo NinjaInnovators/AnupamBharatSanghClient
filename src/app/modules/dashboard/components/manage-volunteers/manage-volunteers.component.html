@@ -1,0 +1,188 @@
+<div class="card" *ngIf="!isView">
+    <div class="card-body col-md-6">
+        <form class="form" [formGroup]="volunteerForm" (ngSubmit)="addVolunteer()" autocomplete="off" novalidate>
+            <div class="form-group text-left">
+                <label for="Title">Volunteer Name</label>
+                <input type="text" formControlName="VolunteerName" class="form-control"/>
+                <div class="alert alert-danger" *ngIf="f.VolunteerName.invalid && (f.VolunteerName.dirty || f.VolunteerName.touched)">
+                    <div role="alert" *ngIf="f.VolunteerName.errors?.required">
+                        Volunteer Name is required!
+                    </div>
+                </div>
+            </div>  
+            <div class="form-group text-left">
+                <label for="Volunteer Image">Volunteer Image</label>
+                <img src="{{volunteerForm.value.VolunteerImage}}" width="120" height="170" />
+                <input type='file' (change)="onSelectFile($event)" />
+                <div class="alert alert-danger" *ngIf="f.VolunteerImage.invalid && (f.VolunteerImage.dirty || f.VolunteerImage.touched)">
+                    <div role="alert" *ngIf="f.VolunteerImage.errors?.required">
+                        VolunteerImage is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="slogan">Volunteer Wish</label>
+                <textarea formControlName="VolunteerWish" rows="5" cols="33" class="form-control" ></textarea>
+                <div class="alert alert-danger" *ngIf="f.VolunteerWish.invalid && (f.VolunteerWish.dirty || f.VolunteerWish.touched)">
+                    <div role="alert" *ngIf="f.VolunteerWish.errors?.required">
+                        VolunteerWish is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="slogan">Designation</label>
+                <input formControlName="VolunteerDesignation" rows="5" cols="33" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.VolunteerDesignation.invalid && (f.VolunteerDesignation.dirty || f.VolunteerDesignation.touched)">
+                    <div role="alert" *ngIf="f.VolunteerDesignation.errors?.required">
+                        Volunteer Designation is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="VolunteerFacebookLink">Volunteer FacebookLink</label>
+                <input  formControlName="VolunteerFacebookLink" class="form-control" />
+               
+            </div>       
+            <div class="form-group text-left">
+                <label for="VolunteerGoogleLink">Volunteer GoogleLink</label>
+                <input  formControlName="VolunteerGoogleLink" class="form-control" />
+                
+            </div>    
+            <div class="form-group text-left">
+                <label for="VolunteerGoogleLink">Volunteer TwitterLink</label>
+                <input  formControlName="VolunteerTwitterLink" class="form-control" />
+                
+            </div>  
+            <div class="form-group text-left">
+                <label for="VolunteerLinkedinLink">Volunteer LinkedinLink</label>
+                <input  formControlName="VolunteerLinkedinLink" class="form-control" />
+               
+            </div> 
+            <div class="form-group text-left">
+                <label for="VolunteerSkypeLink">Volunteer SkypeLink</label>
+                <input  formControlName="VolunteerSkypeLink" class="form-control" />
+               
+            </div>   
+            <div class="form-group" style="float: right;">
+                <button type="button" class="btn btn-danger mr-2" (click)="reset()">Cancel</button>
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm">
+                        <strong>{{isEdit===false?'Submit':'Update'}}</strong>
+                    </span>
+                    
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card" *ngIf="isView">
+    <div class="card-body">
+        <div class="d-md-flex align-items-center">
+
+            <div class="ml-auto mb-2">
+                <button type="button" class="btn btn-primary" style="border-radius: 30px;" (click)="add()">
+                    <i class="fa fa-plus"></i>
+                    Add</button>
+            </div>
+        </div>
+        <div class="row" >
+            <form [formGroup]="searchVolunteerForm" (ngSubmit)="searchVolunteer()" novalidate  style="width:100%">
+                <div class="row">                   
+                       <div class="col-md-4 from-group py-2">
+					    <input type="text" formControlName="VolunteerName" class="form-control" placeholder="Title"/>
+					   </div> 
+                        <div class="col-md-4 form-group py-2">
+                            <select class="form-control ddl" formControlName="IsActive">
+                                <option value="">--Status--</option>
+                                <option value="1">Active</option>
+                                <option value="0">InActive</option>
+                            </select>
+                        </div>                  
+                 
+                        <div class="col-md-4 form-group py-2">
+						<button type="submit" class="btn btn-danger btn-rounded">
+                            <i class="fa fa-search"></i>&nbsp;Search</button>
+						</div>                 
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+  
+    <div class="table-responsive">
+        <hr/>
+        <div class="text-right mr-5">
+            <strong>Total Volunteer:</strong>
+            {{totalVolunteer}}
+        </div>
+        <hr/>      
+        <table class="table v-middle mb-0 no-wrap">
+            <thead>
+                <tr>
+                    <th class="border-top-0 font-medium border-bottom-0">SNo.</th>
+                    <th class="border-top-0 font-medium border-bottom-0">Volunteer Name</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Volunteer Image</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Volunteer Wish </th> 
+                    <th class="border-top-0 font-medium border-bottom-0">Designation</th>    
+                    <th class="border-top-0 font-medium border-bottom-0">Volunteer FacebookLink</th>     
+                    <th class="border-top-0 font-medium border-bottom-0">Volunteer GoogleLink</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Volunteer TwitterLink</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Volunteer LinkedinLink</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Volunteer SkypeLink</th>            
+                    <th class="border-top-0 font-medium border-bottom-0">Status</th>
+                    <th class="border-top-0 font-medium border-bottom-0" colspan="2">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let cat of volunteerList;index as i'>
+                    <td>{{i+1}}</td>
+                    <td>
+                        {{cat.VolunteerName}}
+                    </td>   
+                    
+                    <td><img src={{apiEndPoint+cat.VolunteerImage}} style="width: 180px; height: 80px;"/></td>   
+                    <td>
+                        {{cat.VolunteerWish}}
+                    </td>        
+                    <td>
+                        {{cat.VolunteerDesignation}}
+                    </td>     
+                    <td>
+                        {{cat.VolunteerFacebookLink}}
+                    </td> 
+                    <td>
+                        {{cat.VolunteerGoogleLink}}
+                    </td> 
+                    <td>
+                        {{cat.VolunteerTwitterLink}}
+                    </td> 
+                    <td>
+                        {{cat.VolunteerLinkedinLink}}
+                    </td> 
+                    <td>
+                        {{cat.VolunteerSkypeLink}}
+                    </td>   
+                      <td>
+                       
+                        <label class="toggle-switch">
+                            <input type="checkbox" [(ngModel)]="cat.IsActive" (click)="changeStatus(cat)"/>
+                            <div class="slider"></div>
+                        </label>
+                    </td>
+                    <td>
+                        <i class="fa fa-edit" (click)="editVolunteer(cat)"></i>
+                    </td>
+                    <td>
+                        <i class="fa fa-trash text-danger" (click)="deleteVolunteer(cat)"></i>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

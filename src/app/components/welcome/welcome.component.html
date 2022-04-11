@@ -1,0 +1,32 @@
+<section class="welcome-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+            
+            <!-- Content Column -->
+            <div class="content-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <h2 [innerHTML]="welcomeItem.Title"></h2>
+                    <div class="bold-text">{{welcomeItem.SubTitle}}</div>
+                    <div class="text">{{welcomeItem.Description}}</div>
+                    <a href="{{welcomeItem.ButtonLink}}" class="theme-btn btn-style-three">{{welcomeItem.ButtonText}}</a>
+                </div>
+            </div>
+            
+            <!-- Video Column -->
+            <div class="video-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    
+                    <!--Video Box-->
+                    <div class="video-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <figure class="video-image">
+                            <img src="{{apiEndPoint+welcomeItem.WelcomeSectionImage}}" alt="">
+                        </figure>
+                        <a href="{{welcomeItem.VideoButtonLink}}" class="lightbox-image overlay-box"><span class="flaticon-play-button"><i class="ripple"></i></span></a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>

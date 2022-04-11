@@ -1,0 +1,56 @@
+<section class="fluid-section-one">
+    <div class="outer-section clearfix">
+        
+       <!--Image Column-->
+        <div class="image-column" style="background-image: url(assets/images/resource/image-1.jpg)">
+            <div class="image">
+                <img src="{{apiEndPoint+eventListSection.EventListSectionImage}}" alt="">
+            </div>
+        </div>
+        <!--End Image Column-->
+       
+        <!--Content Column-->
+        <div class="content-column">
+            <div class="content-box">
+                
+                <!-- Sec Title -->
+                <div class="sec-title">
+                    <h2 [innerHTML]="eventListSection.EventListTitle"></h2>
+                    <div class="text">{{eventListSection.EventListDescription}}</div>
+                </div>
+                
+                
+                <div class="row clearfix">
+                    
+                    <!-- Event Block -->
+                    <div class="event-block col-lg-6 col-md-6 col-sm-12" *ngFor="let item of eventList.slice(0,2)">
+                        <div class="inner-box">
+                            <!-- Upper Box -->
+                            <div class="upper-box">
+                                <div class="upper-inner">
+                                    <div class="date-outer">
+                                        <div class="date">{{item.EventDate|date:'dd'}}</div>
+                                        <div class="month">{{item.EventDate|date:'MMM'}}</div>
+                                    </div>
+                                    <div class="category"><span class="theme_color">Organized By :</span> {{item.OrganizedBy}}</div>
+                                </div>
+                            </div>
+                            <h3><a href="#">{{item.EventTitle}}</a></h3>
+                            <ul class="post-meta">
+                                <li><a href="#"><span class="icon far fa-clock"></span>Starts {{item.EventTime}}</a></li>
+                                <li><a href="#"><span class="icon fas fa-map-marker-alt"></span>{{item.EventLocation}}</a></li>
+                            </ul>
+                            <div class="btns-box">
+                                <a href="#" class="theme-btn btn-style-three">Donate now</a>
+                                <a href="#" class="theme-btn btn-style-two">join us</a>
+                            </div>
+                        </div>
+                    </div>                 
+                   
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>

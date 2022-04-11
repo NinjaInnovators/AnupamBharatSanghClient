@@ -1,0 +1,7 @@
+<owl-carousel class="" [items]="sponsersList"  [options]="sponserOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+    <ul class="sponsors-carousel" *ngFor="let item of sponsersList">
+        <li class="slide-item" >
+            <figure class="image-box" ><a href="#"><img  src="{{apiEndPoint+item.SponserImage}}" alt="" /></a></figure>
+        </li>                      
+    </ul>
+</owl-carousel>  

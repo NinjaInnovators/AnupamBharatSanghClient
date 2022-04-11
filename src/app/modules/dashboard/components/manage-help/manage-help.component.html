@@ -1,0 +1,53 @@
+<div class="card">
+    <div class="card-body col-md-6">
+        <form class="form" [formGroup]="helpForm" (ngSubmit)="addHelp()" autocomplete="off" novalidate>
+            <div class="form-group text-left">
+                <label for="Title">Title</label>
+                <input type="text" formControlName="HelpTitle" class="form-control"/>
+                <div class="alert alert-danger" *ngIf="f.HelpTitle.invalid && (f.HelpTitle.dirty || f.HelpTitle.touched)">
+                    <div role="alert" *ngIf="f.HelpTitle.errors?.required">
+                        Title is required!
+                    </div>
+                </div>
+            </div>  
+         
+            <div class="form-group text-left">
+                <label for="slogan">Description</label>
+                <textarea formControlName="HelpDescription" rows="5" cols="33" class="form-control" ></textarea>
+                <div class="alert alert-danger" *ngIf="f.HelpDescription.invalid && (f.HelpDescription.dirty || f.HelpDescription.touched)">
+                    <div role="alert" *ngIf="f.HelpDescription.errors?.required">
+                        Description is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="buttonText">ButtonText</label>
+                <input  formControlName="HelpButtonText" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.HelpButtonText.invalid && (f.HelpButtonText.dirty || f.HelpButtonText.touched)">
+                    <div role="alert" *ngIf="f.HelpButtonText.errors?.required">
+                        ButtonText is required!
+                    </div>
+                </div>
+            </div>       
+            <div class="form-group text-left">
+                <label for="buttonLink">Button Link</label>
+                <input  formControlName="HelpButtonLink" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.HelpButtonLink.invalid && (f.HelpButtonLink.dirty || f.HelpButtonLink.touched)">
+                    <div role="alert" *ngIf="f.HelpButtonLink.errors?.required">
+                        ButtonLink is required!
+                    </div>
+                </div>
+            </div>     
+          
+            <div class="form-group" style="float: right;">                
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm">
+                        <strong>Save</strong>
+                    </span>                    
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

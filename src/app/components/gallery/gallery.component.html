@@ -1,0 +1,85 @@
+
+	<!--Page Title-->
+    <section class="page-title" style="background-image:url(assets/images/background/12.jpg);">
+    	<div class="auto-container">
+        	<div class="row clearfix">
+            	<!--Title -->
+            	<div class="title-column col-lg-6 col-md-12 col-sm-12">
+                	<h1>Gallery</h1>
+                </div>
+                <!--Bread Crumb -->
+                <div class="breadcrumb-column col-lg-6 col-md-12 col-sm-12">
+                    <ul class="bread-crumb clearfix">
+                        <li><a href="#"><span class="icon fas fa-home"></span> Home</a></li>
+                        <li class="active"><span class="icon fas fa-arrow-alt-circle-right"></span> Gallery</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Page Title-->
+	
+	<!-- Gallery Section -->
+	<section class="gallery-section gallery-page-section">
+		<div class="auto-container">
+			<h2 class="text-center mb-3">Gallery</h2>
+			<!--MixitUp Galery-->
+            <div class="mixitup-gallery">
+                
+                <!--Filter-->
+                <!-- <div class="filters clearfix">
+                	
+                	<ul class="filter-tabs filter-btns text-center clearfix">
+                        <li class="active filter" data-role="button" data-filter="all">All</li>
+                        <li class="filter" data-role="button" data-filter=".homeless">HOMELESS</li>
+                        <li class="filter" data-role="button" data-filter=".charity">CHARITY</li>
+                        <li class="filter" data-role="button" data-filter=".food">FOOD HELP</li>
+                        <li class="filter" data-role="button" data-filter=".water">CLEAN WATER</li>
+                    </ul>
+                    
+                </div> -->
+              
+                <div class="filter-list row clearfix">					
+					<!-- Gallery Block -->
+					<div class="gallery-block col-lg-4 col-md-6 col-sm-12" *ngFor="let image of _albums; let i=index">
+						<div class="inner-box">
+							<div class="image"  >
+								<img [src]="image.thumb" class="img-thumbnail img-responsive" (click)="open(i)" style="width:350px;height:270px;" />								
+								 <!-- <div class="overlay-box">
+									<div class="overlay-inner">
+										<h3><a href="#">Charity Poor Peoples</a></h3>
+										<div class="text">Lorem ipsum dolor sit amet, vix an natum labuti eleifd, mel am laoreetmenandri. Ei justo complectitur duo. Ei solet tos soletu possit quo. Sea cu justo laudem.</div>
+										<ul class="links">
+											<li><a href="#" class="icon flaticon-web-link"></a></li>
+											<li><a href="{{image.src}}" data-fancybox="gallery" data-caption="" class="icon flaticon-full-screen"></a></li>
+										</ul>
+									</div>
+								</div>  -->
+							</div>
+						</div>
+					</div>				
+					
+				</div>
+			
+				<!--Post Share Options-->
+				<!-- <div class="styled-pagination text-center">
+					<ul class="clearfix">
+						<li class="prev"><a href="#"><span class="flaticon-back"></span> </a></li>
+						<li><a href="#">1</a></li>
+						<li class="active"><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li class="next"><a href="#"><span class="flaticon-right-arrow"></span> </a></li>
+					</ul>
+				</div> -->
+				
+			</div>
+			
+		</div>
+	</section>
+	<!-- End Gallery Section -->
+	
+	<!--Newsleter Section-->
+	<news-letter></news-letter>
+    <!--End Newsleter Section-->

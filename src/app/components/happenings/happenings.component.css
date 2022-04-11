@@ -1,0 +1,13 @@
+.event-block-three .inner-box .content-column .date-outer .date {
+    position: relative;
+    color: #333333;
+    width: 45px;
+    height: 45px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3em;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #e1e1e1;
+    font-family: 'Roboto Slab', serif;
+}

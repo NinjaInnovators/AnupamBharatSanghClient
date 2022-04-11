@@ -1,0 +1,144 @@
+<div class="card" *ngIf="!isView">
+    <div class="card-body col-md-6">
+        <form class="form" [formGroup]="galleryForm" (ngSubmit)="addGallery()" autocomplete="off" novalidate>
+            <div class="form-group text-left">
+                <label for="Title">Caption</label>
+                <input type="text" formControlName="GalleryCaption" class="form-control"/>
+                <div class="alert alert-danger" *ngIf="f.GalleryCaption.invalid && (f.GalleryCaption.dirty || f.CausesTitle.touched)">
+                    <div role="alert" *ngIf="f.GalleryCaption.errors?.required">
+                        Caption is required!
+                    </div>
+                </div>
+            </div>  
+            <div class="form-group text-left">
+                <label for="Gallery Image">Gallery Image</label>
+                <img src="{{galleryForm.value.GalleryImage}}" width="120" height="170" />
+                <input type='file' (change)="onSelectFile($event)" />
+                <div class="alert alert-danger" *ngIf="f.GalleryImage.invalid && (f.GalleryImage.dirty || f.GalleryImage.touched)">
+                    <div role="alert" *ngIf="f.GalleryImage.errors?.required">
+                        GalleryImage is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="GalleryDescription">Gallery Description</label>
+                <textarea formControlName="GalleryDescription" rows="5" cols="33" class="form-control" ></textarea>
+                <div class="alert alert-danger" *ngIf="f.GalleryDescription.invalid && (f.GalleryDescription.dirty || f.GalleryDescription.touched)">
+                    <div role="alert" *ngIf="f.GalleryDescription.errors?.required">
+                        Gallery Description is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="LinkUrl">LinkUrl</label>
+                <input  formControlName="LinkUrl" class="form-control" />
+                <!-- <div class="alert alert-danger" *ngIf="f.FundRaised.invalid && (f.FundRaised.dirty || f.FundRaised.touched)">
+                    <div role="alert" *ngIf="f.FundRaised.errors?.required">
+                        FundRaised is required!
+                    </div>
+                </div> -->
+            </div>       
+           
+            <div class="form-group" style="float: right;">
+                <button type="button" class="btn btn-danger mr-2" (click)="reset()">Cancel</button>
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm">
+                        <strong>{{isEdit===false?'Submit':'Update'}}</strong>
+                    </span>
+                    
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card" *ngIf="isView">
+    <div class="card-body">
+        <div class="d-md-flex align-items-center">
+
+            <div class="ml-auto mb-2">
+                <button type="button" class="btn btn-primary" style="border-radius: 30px;" (click)="add()">
+                    <i class="fa fa-plus"></i>
+                    Add</button>
+            </div>
+        </div>
+        <div class="row" >
+            <form [formGroup]="searchGalleryForm" (ngSubmit)="searchGallery()" novalidate  style="width:100%">
+                <div class="row">                   
+                       <div class="col-md-4 from-group py-2">
+					    <input type="text" formControlName="Title" class="form-control" placeholder="Title"/>
+					   </div> 
+                        <div class="col-md-4 form-group py-2">
+                            <select class="form-control ddl" formControlName="IsActive">
+                                <option value="">--Status--</option>
+                                <option value="1">Active</option>
+                                <option value="0">InActive</option>
+                            </select>
+                        </div>                  
+                 
+                        <div class="col-md-4 form-group py-2">
+						<button type="submit" class="btn btn-danger btn-rounded">
+                            <i class="fa fa-search"></i>&nbsp;Search</button>
+						</div>                 
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+  
+    <div class="table-responsive">
+        <hr/>
+        <div class="text-right mr-5">
+            <strong>Total Gallery:</strong>
+            {{totalGallery}}
+        </div>
+        <hr/>      
+        <table class="table v-middle mb-0 no-wrap">
+            <thead>
+                <tr>
+                    <th class="border-top-0 font-medium border-bottom-0">SNo.</th>
+                    <th class="border-top-0 font-medium border-bottom-0">Gallery Caption</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Description</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Gallery Image</th> 
+                    <th class="border-top-0 font-medium border-bottom-0">Link Url</th>                                   
+                    <th class="border-top-0 font-medium border-bottom-0">Status</th>
+                    <th class="border-top-0 font-medium border-bottom-0" colspan="2">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let cat of galleryList;index as i'>
+                    <td>{{i+1}}</td>
+                    <td>
+                        {{cat.GalleryCaption}}
+                    </td>    
+                    <td>
+                        {{cat.GalleryDescription}}
+                    </td>  
+                    <td><img src={{apiEndPoint+cat.GalleryImage}} style="width: 180px; height: 80px;"/></td>   
+                    <td>
+                        {{cat.LinkUrl}}
+                    </td>        
+                       
+                      <td>
+                       
+                        <label class="toggle-switch">
+                            <input type="checkbox" [(ngModel)]="cat.IsActive" (click)="changeStatus(cat)"/>
+                            <div class="slider"></div>
+                        </label>
+                    </td>
+                    <td>
+                        <i class="fa fa-edit" (click)="editGallery(cat)"></i>
+                    </td>
+                    <td>
+                        <i class="fa fa-trash text-danger" (click)="deleteGallery(cat)"></i>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,152 @@
+
+	<!--Page Title-->
+    <section class="page-title" style="background-image:url(assets/images/background/12.jpg);">
+    	<div class="auto-container">
+        	<div class="row clearfix">
+            	<!--Title -->
+            	<div class="title-column col-lg-6 col-md-12 col-sm-12">
+                	<h1>Get Involved</h1>
+                </div>
+                <!--Bread Crumb -->
+                <div class="breadcrumb-column col-lg-6 col-md-12 col-sm-12">
+                    <ul class="bread-crumb clearfix">
+                        <li><a style="cursor:pointer" [routerLink]="['/home']"><span class="icon fas fa-home"></span> Home</a></li>
+                        <li class="active"><span class="icon fas fa-arrow-alt-circle-right"></span> Get Involved</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Page Title-->
+	
+	<!-- Volunter Section -->
+	<section class="volunter-section">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<h2 [innerHTML]="volunteerData.HeadingTitle"></h2>
+				<div class="text">{{volunteerData.Description}}</div>
+			</div>
+	 <div class="row clearfix">            
+				<!-- Volunter Block -->
+	 <div class="volunter-block col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let item of volunteerList">         
+		<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms"  >
+			<div class="image" >
+				<img src="{{apiEndPoint+item.VolunteerImage}}" alt="" />
+				<div class="overlay-box">
+					<div class="overlay-inner">
+						<div class="text">{{item.VolunteerWish}}</div>
+						<a href="#" class="link-btn"><span class="icon flaticon-web-link"></span></a>
+						<!--Social Box-->
+						<ul class="social-box">
+							<li><a  href="item.VolunteerFacebookLink"><span class="fab fa-facebook-f"></span></a></li>
+							<li><a  href="item.VolunteerGoogleLink"><span class="fab fa-google-plus-g"></span></a></li>
+							<li><a  href="item.VolunteerSkypeLink"><span class="fab fa-skype"></span></a></li>
+							<li><a  href="item.VolunteerTwitterLink"><span class="fab fa-twitter"></span></a></li>
+							<li><a  href="item.VolunteerLinkedinLink"><span class="fab fa-linkedin-in"></span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="lower-box">
+				<h3><a href="#">{{item.VolunteerName}}</a></h3>
+				<div class="designation">{{item.VolunteerDesignation}}</div>
+			</div>
+		</div>    
+	
+			</div>
+		   
+			</div>
+			<button class="btn btn-danger pull-right" [routerLink]="['/get-involved']">View More</button>
+		</div>
+	</section>
+	<!-- End Volunter Section -->
+	
+	<!-- Donate Form Section -->
+	<section class="donate-form-section" style="background-image:url(assets/images/background/10.jpg)">
+		<div class="auto-container">
+			<div class="row clearfix">
+				
+				<!-- Image Column -->
+				<div class="image-column col-lg-6 col-md-12 col-sm-12">
+					<div class="inner-column wow slideInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<!-- <div class="image">
+							<img src="assets/images/resource/image-2.png" alt="" />
+						</div> -->
+					</div>
+				</div>
+				
+				<!-- Form Column -->
+				<div class="form-column col-lg-6 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<!-- Sec Title -->
+						<div class="sec-title light centered">
+							<h2><span class="theme_color">Donate </span> Now</h2>
+							<div class="text">We are always looking out and timely help disadvantaged, <br> See our latest campaign and if can you pledonaa</div>
+						</div>
+						
+						<!-- Default Form -->
+						<div class="default-form style-two">
+							<form method="post" action="#">
+							
+								<div class="row clearfix">
+								
+									<!-- Form Group -->
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<input type="text" name="project" value="" placeholder="Project You Want to donation" required>
+									</div>
+								
+									<!-- Form Group -->
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<input type="text" name="name" value="" placeholder="First Name" required>
+									</div>
+									
+									<!-- Form Group -->
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<input type="text" name="lastname" value="" placeholder="Last Name" required>
+									</div>
+									
+									<!-- Form Group -->
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<input type="text" name="amount" value="" placeholder="Your Gift ( US Dollar $ )" required>
+									</div>
+									
+									<!-- Form Group -->
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<textarea name="message" placeholder="Message"></textarea>
+									</div>
+									
+									<div class="form-group text-center col-lg-12 col-md-12 col-sm-12">
+										<button type="submit" class="theme-btn btn-style-three"><span class="txt">Fund now</span></button>
+									</div>                                     
+									
+								</div>
+								
+							</form>
+						</div>
+						<!--End Default Form-->
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	<!-- End Donate Form Section -->
+	
+	<!--Clients Section-->
+    <section class="clients-section">
+        <div class="outer-container">
+            
+            <div class="sponsors-outer">
+                <!--Sponsors Carousel-->
+               <sponsers></sponsers>
+            </div>
+            
+        </div>
+    </section>
+    <!--End Clients Section-->
+	
+	<!--Newsleter Section-->
+	<news-letter></news-letter>
+    <!--End Newsleter Section-->

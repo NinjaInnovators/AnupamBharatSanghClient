@@ -1,0 +1,193 @@
+<div class="card" *ngIf="!isView" style="width:950px;">
+    <div class="card-body col-md-12">
+        <form class="form" [formGroup]="eventForm" (ngSubmit)="addEvent()" autocomplete="off" novalidate>
+            <div class="form-group text-left">
+                <label for="Title">Title</label>
+                <input type="text" formControlName="EventTitle" class="form-control"/>
+                <div class="alert alert-danger" *ngIf="f.EventTitle.invalid && (f.EventTitle.dirty || f.EventTitle.touched)">
+                    <div role="alert" *ngIf="f.EventTitle.errors?.required">
+                        Title is required!
+                    </div>
+                </div>
+            </div>  
+            <div class="form-group text-left">
+                <label for="Event Big Image">Event Big Image</label>
+                <img src="{{eventForm.value.EventBigImage}}" width="120" height="170" />
+                <input type='file' (change)="onSelectFile($event)" />
+                <div class="alert alert-danger" *ngIf="f.EventBigImage.invalid && (f.EventBigImage.dirty || f.EventBigImage.touched)">
+                    <div role="alert" *ngIf="f.EventBigImage.errors?.required">
+                        EventBigImage is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="Event Small Image">Event Small Image</label>
+                <img src="{{eventForm.value.EventSmallImage}}" width="120" height="170" />
+                <input type='file' (change)="onSelectFileSmall($event)" />
+                <div class="alert alert-danger" *ngIf="f.EventSmallImage.invalid && (f.EventSmallImage.dirty || f.EventSmallImage.touched)">
+                    <div role="alert" *ngIf="f.EventSmallImage.errors?.required">
+                        EventSmallImage is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="slogan">Description</label>
+                <textarea formControlName="EventDescription" rows="5" cols="33" class="form-control" ></textarea>
+                <div class="alert alert-danger" *ngIf="f.EventDescription.invalid && (f.EventDescription.dirty || f.EventDescription.touched)">
+                    <div role="alert" *ngIf="f.EventDescription.errors?.required">
+                        Description is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="eventDate">Event Date</label>
+                <input type="date"  formControlName="EventDate" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.EventDate.invalid && (f.EventDate.dirty || f.EventDate.touched)">
+                    <div role="alert" *ngIf="f.EventDate.errors?.required">
+                        EventDate is required!
+                    </div>
+                </div>
+            </div>       
+            <div class="form-group text-left">
+                <label for="eventTime">Event Time</label>
+                <input type="time"  formControlName="EventTime" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.EventTime.invalid && (f.EventTime.dirty || f.EventTime.touched)">
+                    <div role="alert" *ngIf="f.EventTime.errors?.required">
+                        EventTime is required!
+                    </div>
+                </div>
+            </div>   
+            <div class="form-group text-left">
+                <label for="eventLocation">Event Location</label>
+                <input type="text"  formControlName="EventLocation" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.EventLocation.invalid && (f.EventLocation.dirty || f.EventLocation.touched)">
+                    <div role="alert" *ngIf="f.EventLocation.errors?.required">
+                        EventLocation is required!
+                    </div>
+                </div>
+            </div>       
+            <div class="form-group text-left">
+                <label for="organizedBy">Organized By</label>
+                <input  formControlName="OrganizedBy" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.OrganizedBy.invalid && (f.OrganizedBy.dirty || f.OrganizedBy.touched)">
+                    <div role="alert" *ngIf="f.OrganizedBy.errors?.required">
+                        OrganizedBy is required!
+                    </div>
+                </div>
+            </div>     
+            <div class="form-group" style="float: right;">
+                <button type="button" class="btn btn-danger mr-2" (click)="reset()">Cancel</button>
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm">
+                        <strong>{{isEdit===false?'Submit':'Update'}}</strong>
+                    </span>
+                    
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card " *ngIf="isView" style="width:950px;">
+    <div class="card-body col-lg-12">
+        <div class="d-md-flex align-items-center">
+
+            <div class="ml-auto mb-2">
+                <button type="button" class="btn btn-primary" style="border-radius: 30px;" (click)="add()">
+                    <i class="fa fa-plus"></i>
+                    Add</button>
+            </div>
+        </div>
+        <div class="row" >
+            <form [formGroup]="searchEventForm" (ngSubmit)="searchEvent()" novalidate  style="width:100%">
+                <div class="row">                   
+                       <div class="col-md-4 from-group py-2">
+					    <input type="text" formControlName="Title" class="form-control" placeholder="Title"/>
+					   </div> 
+                        <div class="col-md-4 form-group py-2">
+                            <select class="form-control ddl" formControlName="IsActive">
+                                <option value="">--Status--</option>
+                                <option value="1">Active</option>
+                                <option value="0">InActive</option>
+                            </select>
+                        </div>                  
+                 
+                        <div class="col-md-4 form-group py-2">
+						<button type="submit" class="btn btn-danger btn-rounded">
+                            <i class="fa fa-search"></i>&nbsp;Search</button>
+						</div>                 
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+  
+    <div class="table-responsive">
+        <hr/>
+        <div class="text-right mr-5">
+            <strong>Total Event:</strong>
+            {{totalEvent}}
+        </div>
+        <hr/>      
+        <table class="table v-middle mb-0 no-wrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="border-top-0 font-medium border-bottom-0">SNo.</th>
+                    <th class="border-top-0 font-medium border-bottom-0">EventTitle</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Description</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">Event Big Image</th> 
+                    <th class="border-top-0 font-medium border-bottom-0">Event Small Image</th> 
+                    <th class="border-top-0 font-medium border-bottom-0">Event Date</th>    
+                    <th class="border-top-0 font-medium border-bottom-0">Event Time</th>       
+                    <th class="border-top-0 font-medium border-bottom-0">Event Location</th>    
+                    <th class="border-top-0 font-medium border-bottom-0">Organized By</th>           
+                    <th class="border-top-0 font-medium border-bottom-0">Status</th>
+                    <th class="border-top-0 font-medium border-bottom-0" colspan="2">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let cat of eventList;index as i'>
+                    <td>{{i+1}}</td>
+                    <td>
+                        {{cat.EventTitle}}
+                    </td>    
+                    <td>
+                        {{cat.EventDescription}}
+                    </td>  
+                    <td><img src={{apiEndPoint+cat.EventBigImage}} style="width: 250px; height: 80px;"/></td>   
+                    <td><img src={{apiEndPoint+cat.EventSmallImage}} style="width: 80px; height: 80px;"/></td>   
+                    <td>
+                        {{cat.EventDate}}
+                    </td>        
+                    <td>
+                        {{cat.EventTime}}
+                    </td> 
+                    <td>
+                        {{cat.EventLocation}}
+                    </td> 
+                    <td>
+                        {{cat.OrganizedBy}}
+                    </td>       
+                      <td>
+                       
+                        <label class="toggle-switch">
+                            <input type="checkbox" [(ngModel)]="cat.IsActive" (click)="changeStatus(cat)"/>
+                            <div class="slider"></div>
+                        </label>
+                    </td>
+                    <td>
+                        <i class="fa fa-edit" (click)="editEvent(cat)"></i>
+                    </td>
+                    <td>
+                        <i class="fa fa-trash text-danger" (click)="deleteEvent(cat)"></i>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

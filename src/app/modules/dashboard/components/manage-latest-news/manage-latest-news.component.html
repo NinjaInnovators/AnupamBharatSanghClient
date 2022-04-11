@@ -1,0 +1,169 @@
+<div class="card" *ngIf="!isView">
+    <div class="card-body col-md-6">
+        <form class="form" [formGroup]="latestNewsForm" (ngSubmit)="addLatestNews()" autocomplete="off" novalidate>
+            <div class="form-group text-left">
+                <label for="Title">Title</label>
+                <input type="text" formControlName="NewsTitle" class="form-control"/>
+                <div class="alert alert-danger" *ngIf="f.NewsTitle.invalid && (f.NewsTitle.dirty || f.NewsTitle.touched)">
+                    <div role="alert" *ngIf="f.NewsTitle.errors?.required">
+                        Title is required!
+                    </div>
+                </div>
+            </div>  
+            <div class="form-group text-left">
+                <label for="Banner Image">News Hover Image</label>
+                <img src="{{latestNewsForm.value.NewsHoverImage}}" width="120" height="170" />
+                <input type='file' (change)="onSelectFile($event)" />
+                <div class="alert alert-danger" *ngIf="f.NewsHoverImage.invalid && (f.NewsHoverImage.dirty || f.NewsHoverImage.touched)">
+                    <div role="alert" *ngIf="f.NewsHoverImage.errors?.required">
+                        NewsHoverImage is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="slogan">Description</label>
+                <input formControlName="NewsDescription"  class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.NewsDescription.invalid && (f.NewsDescription.dirty || f.NewsDescription.touched)">
+                    <div role="alert" *ngIf="f.NewsDescription.errors?.required">
+                        NewsDescription is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="slogan">News Category</label>
+                <input formControlName="NewsCategory"  class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.NewsCategory.invalid && (f.NewsCategory.dirty || f.NewsCategory.touched)">
+                    <div role="alert" *ngIf="f.NewsCategory.errors?.required">
+                        NewsCategory is required!
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group text-left">
+                <label for="newsDate">News Date</label>
+                <input type="date" formControlName="NewsDate" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.NewsDate.invalid && (f.NewsDate.dirty || f.NewsDate.touched)">
+                    <div role="alert" *ngIf="f.NewsDate.errors?.required">
+                        NewsDate is required!
+                    </div>
+                </div>
+            </div>       
+            <div class="form-group text-left">
+                <label for="totalNewsComments">Total News Comments</label>
+                <input  formControlName="TotalNewsComments" class="form-control" />
+                <div class="alert alert-danger" *ngIf="f.TotalNewsComments.invalid && (f.TotalNewsComments.dirty || f.TotalNewsComments.touched)">
+                    <div role="alert" *ngIf="f.TotalNewsComments.errors?.required">
+                        TotalNewsComments is required!
+                    </div>
+                </div>
+            </div>     
+            <div class="form-group" style="float: right;">
+                <button type="button" class="btn btn-danger mr-2" (click)="reset()">Cancel</button>
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm">
+                        <strong>{{isEdit===false?'Submit':'Update'}}</strong>
+                    </span>
+                    
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card" *ngIf="isView">
+    <div class="card-body">
+        <div class="d-md-flex align-items-center">
+
+            <div class="ml-auto mb-2">
+                <button type="button" class="btn btn-primary" style="border-radius: 30px;" (click)="add()">
+                    <i class="fa fa-plus"></i>
+                    Add</button>
+            </div>
+        </div>
+        <div class="row" >
+            <form [formGroup]="searchLatestNewsForm" (ngSubmit)="searchLatestNews()" novalidate  style="width:100%">
+                <div class="row">                   
+                       <div class="col-md-4 from-group py-2">
+					    <input type="text" formControlName="Title" class="form-control" placeholder="Title"/>
+					   </div> 
+                        <div class="col-md-4 form-group py-2">
+                            <select class="form-control ddl" formControlName="IsActive">
+                                <option value="">--Status--</option>
+                                <option value="1">Active</option>
+                                <option value="0">InActive</option>
+                            </select>
+                        </div>                  
+                 
+                        <div class="col-md-4 form-group py-2">
+						<button type="submit" class="btn btn-danger btn-rounded">
+                            <i class="fa fa-search"></i>&nbsp;Search</button>
+						</div>                 
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+  
+    <div class="table-responsive">
+        <hr/>
+        <div class="text-right mr-5">
+            <strong>Total LatestNews:</strong>
+            {{totalLatestNews}}
+        </div>
+        <hr/>      
+        <table class="table v-middle mb-0 no-wrap">
+            <thead>
+                <tr>
+                    <th class="border-top-0 font-medium border-bottom-0">SNo.</th>
+                    <th class="border-top-0 font-medium border-bottom-0">NewsTitle</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">NewsHoverImage</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">NewsDescription</th>  
+                    <th class="border-top-0 font-medium border-bottom-0">News Category</th> 
+                    <th class="border-top-0 font-medium border-bottom-0">News Date</th>    
+                    <th class="border-top-0 font-medium border-bottom-0">Total News Comments</th>               
+                    <th class="border-top-0 font-medium border-bottom-0">Status</th>
+                    <th class="border-top-0 font-medium border-bottom-0" colspan="2">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let cat of latestNewsList;index as i'>
+                    <td>{{i+1}}</td>
+                    <td>
+                        {{cat.NewsTitle}}
+                    </td>    
+                  
+                    <td><img src={{apiEndPoint+cat.NewsHoverImage}} style="width: 180px; height: 80px;"/></td>  
+                    <td>
+                        {{cat.NewsDescription}}
+                    </td>   
+                    <td>
+                        {{cat.NewsCategory}}
+                    </td>
+                    <td>
+                        {{cat.NewsDate|date:'dd-MMM-yyyy'}}
+                    </td>        
+                    <td>
+                        {{cat.TotalNewsComments}}
+                    </td>       
+                      <td>
+                       
+                        <label class="toggle-switch">
+                            <input type="checkbox" [(ngModel)]="cat.IsActive" (click)="changeStatus(cat)"/>
+                            <div class="slider"></div>
+                        </label>
+                    </td>
+                    <td>
+                        <i class="fa fa-edit" (click)="editLatestNews(cat)"></i>
+                    </td>
+                    <td>
+                        <i class="fa fa-trash text-danger" (click)="deleteLatestNews(cat)"></i>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

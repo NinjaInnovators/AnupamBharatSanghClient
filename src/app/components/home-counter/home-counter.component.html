@@ -1,0 +1,24 @@
+<section class="counter-section" style="background-image:url(assets/images/background/1.jpg)">
+    <div class="auto-container">
+    
+        <!-- Fact Counter -->
+        <div class="fact-counter">
+            <div class="row clearfix">
+
+                <!--Column-->
+                <div class="column counter-column col-lg-3 col-md-6 col-sm-12" *ngFor="let item of homeEventCountSectionList">
+                    <div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <div class="content">
+                            <div class="icon flaticon-lightbulb"></div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="2500" data-stop="3586">{{item.EventCount}}</span>
+                            </div>
+                            <h4 class="counter-title">{{item.EventCaption}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
